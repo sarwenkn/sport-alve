@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sport Alve – Sport + AI + Active</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top-header">
+  <div class="logo-wrapper">
+    <!-- Put your own logo at assets/logo.png -->
+    <img src="assets/logo.png" alt="Sport Alve logo" class="logo-img" />
+    <div class="logo-text">
+      <div class="logo-main">Sport Alve</div>
+      <div class="logo-sub">Sport + AI + Active</div>
+    </div>
+  </div>
+  <nav class="nav">
+    <a href="#hero">Home</a>
+    <a href="#profile-section">Profile</a>
+    <a href="#guidance-section">Guidance</a>
+    <a href="#plan-section">AI Plan</a>
+    <a href="#posture-section">Posture</a>
+    <a href="#injury-section">Injury</a>
+  </nav>
+  </header>
+
+  <main>
+    <!-- HERO / INTRO -->
+    <section id="hero" class="section hero">
+      <div class="hero-content">
+        <h1>Sport Alve</h1>
+        <p>Sport + AI + Active – your smart companion for safer and better workouts.</p>
+        <p class="hero-sub">
+          Set your profile, get AI-style training plans, guidance, posture feedback and basic injury recommendations.
+        </p>
+        <button id="start-demo-btn" class="primary-btn">Start Demo</button>
+      </div>
+    </section>
+
+    <section id="next-step-banner" class="next-step-banner hidden">
+      <div>
+        <h3>Profile saved. Next, let Sport Alve guide you:</h3>
+        <p>Jump to each step so you don't miss guidance, visuals, posture checks and injury tips.</p>
+      </div>
+      <div class="quick-nav">
+        <button class="pill-link" data-target="guidance-section">Step 2: Guidance</button>
+        <button class="pill-link" data-target="plan-section">Step 3: AI Plan</button>
+        <button class="pill-link" data-target="posture-section">Step 4: Posture</button>
+        <button class="pill-link" data-target="injury-section">Step 5: Injury</button>
+      </div>
+    </section>
+
+    <!-- STEP 1 – PROFILE -->
+    <section id="profile-section" class="section card">
+      <h2>Step 1 – Your Profile</h2>
+      <p class="section-intro">
+        Sport Alve personalises guidance based on your age, experience and goals.
+      </p>
+      <div class="grid-2">
+        <form id="profile-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" />
+          </div>
+
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input
+              id="age"
+              name="age"
+              type="number"
+              min="10"
+              max="100"
+              placeholder="Your age"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="sex">Sex</label>
+            <select id="sex" name="sex" required>
+              <option value="">Select...</option>
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="level">Experience Level</label>
+            <select id="level" name="level" required>
+              <option value="">Select...</option>
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="goal">Main Goal / Sport</label>
+            <select id="goal" name="goal" required>
+              <option value="">Select...</option>
+              <option value="general_fitness">General Fitness</option>
+              <option value="fat_loss">Fat Loss</option>
+              <option value="muscle_gain">Muscle Gain</option>
+              <option value="running">Running</option>
+              <option value="football">Football</option>
+              <option value="other_sport">Other Sport</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="days-per-week">Days Available per Week</label>
+            <input id="days-per-week" name="days-per-week" type="number" min="1" max="7" required />
+          </div>
+
+          <button type="submit" class="primary-btn full-width">Save Profile</button>
+        </form>
+
+        <div class="ai-panel">
+          <h3>Sport Alve AI Profile Summary</h3>
+          <p id="profile-summary">
+            No profile yet. Fill in the form and I’ll personalise everything for you.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2 – PRE / POST GUIDANCE + PICTURES/VIDEOS -->
+    <section id="guidance-section" class="section card">
+      <h2>Step 2 – Exercise Guidance</h2>
+      <p class="section-intro">
+        Get warm-up and cool-down suggestions, plus visual guidance for common exercises.
+      </p>
+
+      <div class="grid-2">
+        <div>
+          <h3>Session Setup</h3>
+          <div class="form-group">
+            <label for="session-type">Session Type</label>
+            <select id="session-type">
+              <option value="">Select...</option>
+              <option value="strength">Strength Training</option>
+              <option value="cardio">Cardio</option>
+              <option value="mobility">Mobility / Stretching</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="session-duration">Duration (minutes)</label>
+            <input id="session-duration" type="number" min="10" max="120" />
+          </div>
+
+          <button id="guidance-btn" class="secondary-btn">Get Pre &amp; Post Exercise Guidance</button>
+
+          <div id="guidance-output" class="guidance-output hidden">
+            <h4>Before Exercise</h4>
+            <ul id="before-list"></ul>
+            <h4>After Exercise</h4>
+            <ul id="after-list"></ul>
+          </div>
+        </div>
+
+        <div>
+          <h3>Exercise Visual Guide</h3>
+          <div class="form-group">
+            <label for="exercise-select">Choose an Exercise</label>
+            <select id="exercise-select">
+              <option value="">Select...</option>
+              <option value="squat">Bodyweight Squat</option>
+              <option value="pushup">Push-up</option>
+              <option value="plank">Plank</option>
+              <option value="lunge">Lunge</option>
+            </select>
+          </div>
+
+          <div id="exercise-visual" class="exercise-visual hidden">
+            <img id="exercise-image" alt="Exercise demonstration" />
+            <div class="video-wrapper">
+              <iframe
+                id="exercise-video"
+                title="Exercise video"
+                frameborder="0"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="exercise-text">
+              <h4>Key Steps</h4>
+              <ul id="exercise-steps"></ul>
+              <h4>Common Mistakes</h4>
+              <ul id="exercise-mistakes"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 3 – AI-LIKE TRAINING PLAN -->
+    <section id="plan-section" class="section card">
+      <h2>Step 3 – Sport Alve AI Training Plan</h2>
+      <p class="section-intro">
+        Sport Alve generates a weekly plan based on your profile and goals.
+      </p>
+
+      <button id="generate-plan-btn" class="primary-btn">Generate My AI Plan</button>
+
+      <div id="plan-loading" class="loading hidden">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span>Sport Alve is analysing your profile...</span>
+      </div>
+
+      <div id="plan-output" class="plan-output hidden">
+        <h3>Your Weekly Plan</h3>
+        <p id="plan-summary"></p>
+        <div id="plan-table-wrapper"></div>
+      </div>
+    </section>
+
+    <!-- STEP 4 – POSTURE UPLOAD + AI-STYLE ANALYSIS -->
+    <section id="posture-section" class="section card">
+      <h2>Step 4 – Posture Insight (Upload + AI-style Feedback)</h2>
+      <p class="section-intro">
+        Upload a training photo and Sport Alve will estimate posture quality and suggest simple fixes.
+        (Educational only, not a medical tool.)
+      </p>
+
+      <div class="grid-2">
+        <div>
+          <div class="form-group">
+            <label for="posture-exercise">Exercise in the Photo</label>
+            <select id="posture-exercise">
+              <option value="">Select...</option>
+              <option value="squat">Squat</option>
+              <option value="pushup">Push-up</option>
+              <option value="plank">Plank</option>
+              <option value="lunge">Lunge</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="posture-image-input">Upload Posture Photo</label>
+            <input id="posture-image-input" type="file" accept="image/*" />
+          </div>
+
+          <div class="form-group">
+            <p>Select what you feel or notice in your posture:</p>
+            <div id="posture-issues-container" class="posture-issues-group posture-issues-grid">
+                <p style="font-size:0.8rem; color:#a0aec0;">
+                Choose an exercise above to see posture checkpoints.
+                </p>
+            </div>
+          </div>
+
+
+          <button id="analyze-posture-btn" class="secondary-btn">
+            Analyse Posture
+          </button>
+        </div>
+
+        <div>
+          <div id="posture-preview-wrapper" class="posture-preview-wrapper hidden">
+            <h3>Uploaded Image</h3>
+            <img id="posture-preview" alt="Uploaded posture" />
+          </div>
+
+          <div id="posture-result" class="ai-panel posture-result hidden"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 5 – INJURY AI -->
+    <section id="injury-section" class="section card">
+      <h2>Step 5 – Injury Recovery AI (Educational)</h2>
+      <p class="section-intro">
+        Get basic, AI-style suggestions based on your profile and simple injury info.<br />
+        <strong>Disclaimer:</strong> This is not medical advice. Always consult a doctor or physiotherapist.
+      </p>
+
+      <div class="grid-2">
+        <div>
+          <div class="form-group">
+            <label for="injury-area">Injured Area</label>
+            <select id="injury-area">
+              <option value="">Select...</option>
+              <option value="knee">Knee</option>
+              <option value="shoulder">Shoulder</option>
+              <option value="back">Lower Back</option>
+              <option value="ankle">Ankle</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="injury-severity">Severity / Feeling</label>
+            <select id="injury-severity">
+              <option value="">Select...</option>
+              <option value="mild">Mild discomfort</option>
+              <option value="afterExercise">Pain after exercise</option>
+              <option value="sharp">Sharp pain during movement</option>
+              <option value="swelling">Swelling or instability</option>
+            </select>
+          </div>
+
+          <button id="injury-btn" class="secondary-btn">Generate Injury Guidance</button>
+        </div>
+
+        <div class="ai-panel">
+          <h3>Sport Alve Injury Assistant</h3>
+          <div id="injury-output">
+            Provide area and severity to see a personalised summary here.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Sport Alve – Sport + AI + Active. Educational prototype for assignment use.</p>
+  </footer>
+
+  <!-- Floating AI Assistant Label -->
+  <div class="floating-assistant">
+    <span class="assistant-dot"></span>
+    <span>Sport Alve AI Engine</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
